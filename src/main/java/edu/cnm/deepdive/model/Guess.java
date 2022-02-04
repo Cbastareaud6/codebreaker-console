@@ -29,7 +29,7 @@ public class Guess {
   }
 
   @Expose
-  private boolean solved;
+  private boolean solution;
 
   public String getId() {
     return id;
@@ -63,11 +63,11 @@ public class Guess {
     this.exactMatches = exactMatches;
   }
 
-  public boolean isSolved() {
-    return solved;
+  public boolean isSolution() {
+    return solution;
   }
 
-  public void setSolved(boolean solved) {
-    this.solved = solved;
+  public void setSolution(boolean solution) {
+    this.solution = solution;
   }
 }

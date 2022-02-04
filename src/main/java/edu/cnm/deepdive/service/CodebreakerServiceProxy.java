@@ -21,7 +21,7 @@ public interface CodebreakerServiceProxy {
   @POST ("games")
   Call<Game> startGame(@Body Game game);
   @POST("games/{gameId}/guesses")
-  Call<Guess> submitGuess(String gameId, @Path ("gameId") @Body Guess guess);
+  Call<Guess> submitGuess(@Path ("gameId") String gameId,  @Body Guess guess);
 
   static CodebreakerServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
