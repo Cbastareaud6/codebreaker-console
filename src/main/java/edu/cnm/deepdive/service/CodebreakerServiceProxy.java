@@ -3,6 +3,7 @@ package edu.cnm.deepdive.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.model.Game;
+import edu.cnm.deepdive.model.Guess;
 import java.io.IOException;
 import java.util.Locale.Builder;
 import java.util.Properties;
@@ -11,6 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface CodebreakerServiceProxy {
 
@@ -18,7 +20,8 @@ public interface CodebreakerServiceProxy {
 
   @POST ("games")
   Call<Game> startGame(@Body Game game);
-
+  @POST("games/{gameId}/guesses")
+  Call<Guess> submitGuess(String gameId, @Path ("gameId") @Body Guess guess);
 
   static CodebreakerServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
