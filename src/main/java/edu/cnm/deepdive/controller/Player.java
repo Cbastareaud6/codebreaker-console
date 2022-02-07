@@ -15,7 +15,7 @@ public class Player {
   private static final String SUMMARY_FORMAT_KEY = "summary_format";
   private static final String INVALID_LENGTH_FORMAT_KEY = "invalid_length_format";
   private static final String INVALID_CHARACTERS_FORMAT_KEY = "invalid_characters_format";
-  public static final String GUESS_VALIDATION_FORMAT = "^[%1$s] {%2$d}$";
+  public static final String GUESS_VALIDATION_FORMAT = "^[%1$s]{%2$d}$";
 
   private final GameRepository repository;
 
@@ -51,7 +51,7 @@ public class Player {
         game.getGuesses().size(), seconds);
   }
 
-  private String getGuess(Game game, String validation_Pattern) {
+  private String getGuess(Game game, String validationPattern) {
     output.printf(bundle.getString(GUESS_PROMPT_FORMAT_KEY), game.getPool(), game.getLength());
     String input;
     do {
@@ -60,7 +60,7 @@ public class Player {
       if (input.length() != game.getLength()) { // Length is invalid
         System.out.printf(bundle.getString(INVALID_LENGTH_FORMAT_KEY), input,
             game.getLength());
-      } else if (input.matches(validation_Pattern)) { // Guess contains invalid characters.
+      } else if ( !input.matches(validationPattern)) { // Guess contains invalid characters.
         System.out.printf(bundle.getString(INVALID_CHARACTERS_FORMAT_KEY),
             input, game.getPool());
       } else {
